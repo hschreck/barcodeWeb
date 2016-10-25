@@ -1,0 +1,80 @@
+html,body,div,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,p,blockquote,fieldset,input,abbr,article,aside,command,details,figcaption,figure,footer,header,hgroup,mark,meter,nav,output,progress,section,summary,time {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-family: "-apple-system","HelveticaNeue-Light","Helvetica Neue Light",Helvetica,Arial,"Lucida Grande",sans-serif;
+	background-color: #F5F6F7;
+	color: #000;
+	font-weight: lighter;
+}
+
+img {
+	display: block;
+	padding: 25px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.clear:after {
+	content: ".";
+	visibility: hidden;
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+#page {
+	width: 730px;
+	position: absolute;
+	left: 50%;
+	margin-left: -365px;
+	border: 1px solid #D5D5D6;
+	border-top-color: #E0E1E2;
+	border-bottom-color: #C0C1C2;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	border-radius: 6px;
+	margin-top: 30px;
+	background-color: #FFF;
+}
+
+#main {
+	width: 658px;
+	height: 196px;
+	position: relative;
+	margin-bottom: 20px;
+	padding-left: 36px;
+	padding-right: 36px;
+	display: flex;
+	align-items: center;
+}
+
+#page h2 {
+
+	font-size: 15px;
+	text-align: center;
+	font-weight: 100;
+}
+.fail{
+	color: red;
+}
+.success{
+	color: green;
+}
+#top {
+	text-align: left;
+	padding-left: 20px;
+	margin: 0 auto;
+}
+
+form p {
+	padding-bottom: 10px;
+}
+
+#top .border_bottom {
+	height: 1px;
+	width: 100%;
+	margin-top: 10px;
+	background-color: #D7D7D7;
+}
