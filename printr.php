@@ -12,15 +12,22 @@ if ($_POST["sku"] || $_POST["printer"] || $_POST["quantity"]) {
     $referrer = $_SERVER['HTTP_REFERER'];
     $referrer = str_replace('?success=true', '', $referrer);
     $referrer = str_replace('?success=false', '', $referrer);
+      $referrer = str_replace('&printer=false', '', $referrer);
     setcookie('printer', $_POST["printer"]);
     if ($sku != "") {
-        $output = var_dump(shell_exec('barcode -e 128 -b "' .  escapeshellcmd($sku) . '" -u in -p "1.45x1" -g 1.75x1 | lpr -P ' . escapeshellcmd($printer) . ' -# ' . escapeshellcmd($quantity) ));
-        echo ('echo " barcode -e 128 -b "' . $sku . '" -u in -p "2x1" -g 1.7x1" | lpr -P ' . $printer . ' -# ' . $quantity);
-        header("location: " . $referrer . "?success=true");
+        $output = shell_exec('barcode -e 128 -b "' .  escapeshellcmd($sku) . '" -u in -p "1.45x1" -g 1.75x1 | lpr -P ' . escapeshellcmd($printer) . ' -# ' . escapeshellcmd($quantity) .' 2>&1' );
+//        echo ('echo " barcode -e 128 -b "' . $sku . '" -u in -p "2x1" -g 1.7x1" | lpr -P ' . $printer . ' -# ' . $quantity);
+			echo $output;
+			if(strpos($output, "does not exist")  !== false){
+			       header("location: " . $referrer . "?success=false&printer=false");
+			}else{
+			       header("location: " . $referrer . "?success=true");
+			      }
+			      echo "error";
+ 
     } else {
         header("location: " . $referrer . "?success=false");
     }
     
 }
-echo "how'd you get here little one?";
 ?>

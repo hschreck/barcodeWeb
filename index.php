@@ -41,10 +41,17 @@
 			if($_GET["success"] == "true"){
 				echo("<h2 class='success'>Success!</h2>");
 			}else{
-				echo("<h2 class='fail'>Error: did not print successfully</h2>");
+			if(isset($_GET["printer"])){
+						echo("<h2 class='fail'>Error: did not print successfully (invalid printer)</h2>");
+			}else{
+						echo("<h2 class='fail'>Error: did not print successfully</h2>");
+						}
+			
+	
 			}
 		
 		}?>
+
         <div id="main">
             <div id="top">
      
@@ -55,24 +62,26 @@
                     "1"></p>
                     <p>Printer: <select name="printer">
                 
-                       <?php if(isset($_COOKIE["printer"]) && $_COOKIE["printer"] == "Stage1"){?>
-                       
-                        <option selected value="Stage1">
-                            Stage 1
-                        </option>
-                        
-                          <option value="Sales">
-                            Sales
-                        </option>
-                         <?php } else { ?>
-                          
-                    <option selected value="Stage1">
-                            Stage 1
-                        </option>
-                        <option selected value="Sales">
-                            Sales
-                        </option>
-                        <?php } ?>
+               		<?php 
+		$lines = file('printers.txt');
+
+		// Loop through our array, show HTML source as HTML source; and line numbers too.
+		foreach ($lines as $line_num => $line) {
+		
+			if(isset($_COOKIE["printer"]) && $_COOKIE["printer"] == $line){
+			   		 echo "     <option selected value=". htmlspecialchars($line) .">
+                            ". htmlspecialchars($line) ."
+                        </option>";
+			
+			}else{
+			   		 echo "     <option value=". htmlspecialchars($line) .">
+                            ". htmlspecialchars($line) ."
+                        </option>";
+			}
+
+		}
+
+		?>    
                       
                     </select></p>
                     <input type="submit" value="Print">
